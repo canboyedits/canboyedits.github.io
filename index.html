@@ -1,44 +1,577 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>About Me</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      color: white;
-      text-align: center;
-      padding: 50px;
-    }
-    .card {
-      background: rgba(255,255,255,0.15);
-      padding: 30px;
-      border-radius: 20px;
-      max-width: 500px;
-      margin: auto;
-    }
-    img {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid white;
-    }
-    a {
-      color: white;
-      display: inline-block;
-      margin: 10px;
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Yash Vyas — Notebook</title>
+  <meta name="description" content="Yash Vyas — a curious builder, ML practitioner, and student of how things work. Pune, India." />
+
+  <meta property="og:title" content="Yash Vyas — Notebook" />
+  <meta property="og:description" content="Building since age 10. Now training reinforcement-learning agents and reading deep RL papers on the side." />
+  <meta property="og:type" content="profile" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300..900;1,300..900&family=JetBrains+Mono:wght@400;500&family=Caveat:wght@500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous" />
+
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="card">
-    <img src="profile.jpg" alt="My Photo">
-    <h1>Your Name</h1>
-    <p>Hello! This is my About Me page.</p>
 
-    <a href="https://github.com/canboyedits">GitHub</a>
-    <a href="https://www.linkedin.com/in/yashvyas2005/">LinkedIn</a>
+<!-- Reading progress -->
+<div class="progress-bar" id="progress-bar"></div>
+
+<main class="page">
+
+  <!-- ================== MASTHEAD ================== -->
+  <header class="masthead">
+    <div class="masthead-left">
+      <img class="profile-photo" src="assets/Profile_photo.jpeg" alt="Yash Vyas" />
+      <span class="name">Yash Vyas</span>
+    </div>
+    <span class="meta">Notebook · Pune, India</span>
+  </header>
+
+  <!-- ================== TITLE ================== -->
+  <section class="title-block">
+    <h1>Building <span class="ink-mark">since 2015.</span></h1>
+    <p class="subtitle">ML practitioner, curious by default. Pune, India.</p>
+    <div class="dateline">Last written · <span id="last-updated">May 2026</span></div>
+  </section>
+
+  <!-- ================== HERO PITCH ================== -->
+  <div class="hero-pitch reveal">
+    <p>Curious by default. I&rsquo;ve been building things &mdash; IoT, core electronics, software &mdash; since I was nine, and I haven&rsquo;t stopped.</p>
+    <p>Now I train reinforcement-learning agents, fine-tune LLMs, and read papers on the side. Wherever I go &mdash; <em>I learn, I solve, I deploy.</em></p>
   </div>
+
+  <!-- ================== CURRENTLY ================== -->
+  <section class="now reveal">
+    <div class="now-grid">
+      <span class="now-key">Building</span>
+      <span class="now-val">DesignGym 2.0 &mdash; an RL environment that teaches an LLM to design.</span>
+
+      <span class="now-key">Reading</span>
+      <span class="now-val">Deep RL papers, Transformers / backprop fundamentals, Titans, RAG, vector databases.</span>
+
+      <span class="now-key">Looking for</span>
+      <span class="now-val">Associate / Junior Data Scientist or ML Engineer roles.</span>
+
+      <span class="now-key">Tinkering</span>
+      <span class="now-val">Rendering engines after work, because old habits.</span>
+    </div>
+  </section>
+
+  <!-- ================== I. WHO I AM ================== -->
+  <article class="section reveal" id="who">
+    <span class="section-number">I &mdash; Who I am</span>
+    <h2 class="section-title">The short answer</h2>
+
+    <div class="prose">
+      <p>I&rsquo;m an inquisitive person. I want to know how things work, and once I do, I want to make them better.</p>
+
+      <p>That curiosity started early. I was nine when I started messing with motors, LEDs, and solar panels &mdash; small core-electronics and IoT builds, just to see what would happen. The first thing I shipped that combined hardware and software was a handwash-dispenser controller using a Arduino, and after that I was hooked on the loop where code makes a physical thing move.</p>
+
+      <p>From there: Arduino, Raspberry Pi, networking, ethical hacking (CEH), web development, deployment. Today I&rsquo;m twenty, two years into research at Sakal Media, and most of my hours go to machine learning &mdash; training models, reading papers, breaking them, trying again.</p>
+    </div>
+  </article>
+
+  <!-- ================== II. ON USING AI ================== -->
+  <article class="section reveal" id="on-ai">
+    <span class="section-number">II &mdash; On using AI</span>
+    <h2 class="section-title">Where I stand</h2>
+
+    <div class="callout">
+      <p>I started programming long before AI tools were everywhere. I&rsquo;ve shipped production APIs, built rendering engines, deployed to AWS, and debugged distributed systems on my own. That foundation is real and I&rsquo;m not going to pretend otherwise.</p>
+
+      <p>Today I do use AI &mdash; deliberately. I use it to <strong>understand new architectures faster</strong>, to <strong>pressure-test my designs</strong>, and to <strong>write code at speed once I know what I&rsquo;m building</strong>. The architecture, the trade-offs, the &ldquo;what should this even be&rdquo; &mdash; that&rsquo;s still me.</p>
+
+      <p>I&rsquo;m saying this plainly because most of what gets called &ldquo;vibe-coded&rdquo; doesn&rsquo;t survive review. What I ship survives review.</p>
+    </div>
+  </article>
+
+  <!-- ================== III. ORIGIN ================== -->
+  <article class="section reveal" id="origin">
+    <span class="section-number">III &mdash; Origin</span>
+    <h2 class="section-title">A timeline</h2>
+
+    <ol class="timeline">
+      <li>
+        <span class="year">2014&ndash;15</span>
+        <div class="moment">Started building IoT and core-electronics projects &mdash; motors, LEDs, solar panels &mdash; and shipped a handwash-dispenser controller using a Arduino. <span class="age">age 9</span></div>
+      </li>
+      <li>
+        <span class="year">2017&ndash;19</span>
+        <div class="moment">Drawing examinations under the Government of Maharashtra: Elementary (B), Intermediate (A). Composition turned out to matter later. <span class="age">age 12&ndash;14</span></div>
+      </li>
+      <li>
+        <span class="year">2018&ndash;19</span>
+        <div class="moment">RoboCHAMP Pro Engineer (A+) and Jr.&nbsp;Champion Engineer (A+) at IndiaFIRST Robotics Academy. <span class="age">age 13&ndash;14</span></div>
+      </li>
+      <li>
+        <span class="year">2020</span>
+        <div class="moment"><strong>Runner-Up, Best Innovative Idea</strong> at the Persistent Smart School Hackathon Grand Finale &mdash; an embedded classroom-noise sensor. First time grown-ups took something I built seriously. <span class="age">age 14</span></div>
+      </li>
+      <li>
+        <span class="year">2021</span>
+        <div class="moment">CEH-track ethical hacking certificate from Hacker School. Eight weeks of learning how systems break. <span class="age">age 15</span></div>
+      </li>
+      <li>
+        <span class="year">2023</span>
+        <div class="moment">Started B.Sc. Computer Science at Fergusson College, Pune. Founded the CS Department Newsletter the same year. <span class="age">age 17</span></div>
+      </li>
+      <li>
+        <span class="year">2024</span>
+        <div class="moment">Joined Sakal Media. Got handed the most interesting problem of my life: <em>can a newspaper lay itself out?</em></div>
+      </li>
+      <li>
+        <span class="year">2025</span>
+        <div class="moment">Top 100 / 20,000+ teams at MumbaiHacks 2025 with <em>3D-Mind</em>, a browser-based 3D MRI viewer.</div>
+      </li>
+      <li>
+        <span class="year">2026</span>
+        <div class="moment">Top 100 / 52,000+ developers at the Meta &times; PyTorch &times; Hugging Face OpenEnv Hackathon Grand Finale, Bangalore, with <em>DesignGym&nbsp;2.0</em>. Promoted to lead a 4-person ML R&amp;D team at Sakal.</div>
+      </li>
+    </ol>
+  </article>
+
+  <!-- ================== IV. PROJECTS ================== -->
+  <article class="section reveal" id="projects">
+    <span class="section-number">IV &mdash; Projects</span>
+    <h2 class="section-title">Things I&rsquo;ve built</h2>
+
+    <!-- DESIGN GYM -->
+    <div class="project" data-gallery="DesignGym">
+      <div class="project-header">
+        <div class="project-title">DesignGym 2.0</div>
+        <div class="project-date">Apr 2026</div>
+      </div>
+      <div class="project-tag">PyTorch <span class="stack-sep">·</span> Hugging Face TRL <span class="stack-sep">·</span> GRPO <span class="stack-sep">·</span> Qwen-0.5B <span class="stack-sep">·</span> OpenEnv <span class="stack-sep">·</span> FastAPI <span class="stack-sep">·</span> Docker</div>
+      <p class="project-summary">A reinforcement-learning environment that teaches an LLM to design like a human &mdash; iteratively diagnose, edit, refine.</p>
+
+      <div class="project-prose">
+        <p>The project I&rsquo;m proudest of. An LLM agent looks at a poster, finds what&rsquo;s wrong with it, picks an edit, and learns through verifiable reward. Not a one-shot generator. Not a template-picker. An <em>agent</em> that learns the workflow of design.</p>
+
+        <p>The hard part was the reward. A flat reward teaches nothing. I built a 7-metric verifiable scoring function with delta-aware, phase-aware shaping &mdash; so the agent gets a non-flat learning signal across long-horizon episodes:</p>
+
+        <div class="equation">
+          <span class="katex-render" data-tex="U(L) = \sum_{k=1}^{7} \lambda_k \, g_k(L), \quad g_k(L) \in [0,1]">U(L) = &Sigma; &lambda;<sub>k</sub> g<sub>k</sub>(L) &nbsp; for k = 1&hellip;7, &nbsp; g<sub>k</sub>(L) &isin; [0,1]</span>
+        </div>
+        <p class="equation-caption">Composite quality score &mdash; seven independent, interpretable signals.</p>
+
+        <p>Trained Qwen-0.5B through heuristic-planner&nbsp;&rarr;&nbsp;<strong>SFT (LoRA)</strong>&nbsp;&rarr;&nbsp;<strong>GRPO</strong>. Pushed the model from <span class="metric">0&rarr;100% valid actions</span>, <span class="metric">+8.5% instruction-fit</span>, and <span class="metric">&minus;83% premature finalize</span>.</p>
+
+        <p>Selected to the <strong>Top 100 of 52,000+ developers</strong> at the Meta&nbsp;&times;&nbsp;PyTorch&nbsp;&times;&nbsp;Hugging Face OpenEnv Hackathon Grand Finale, Bangalore.</p>
+      </div>
+
+      <div class="project-links">
+        <a href="https://huggingface.co/spaces/yashvyasop/DesignGym" target="_blank" rel="noopener">Live Demo&nbsp;&rarr;</a>
+        <a href="https://huggingface.co/spaces/yashvyasop/DesignGym/blob/main/Blog.md" target="_blank" rel="noopener">Research Blog&nbsp;&rarr;</a>
+      </div>
+
+      <div class="gallery-strip">
+        <div class="gallery-thumb" data-gallery="DesignGym" data-index="0"><span class="thumb-num">01</span><img loading="lazy" src="assets/DesignGym/1.png" alt="DesignGym screenshot 1" /></div>
+        <div class="gallery-thumb" data-gallery="DesignGym" data-index="1"><span class="thumb-num">02</span><img loading="lazy" src="assets/DesignGym/2.png" alt="DesignGym screenshot 2" /></div>
+        <div class="gallery-thumb" data-gallery="DesignGym" data-index="2"><span class="thumb-num">03</span><img loading="lazy" src="assets/DesignGym/3.png" alt="DesignGym screenshot 3" /></div>
+      </div>
+    </div>
+
+    <!-- 3D MIND -->
+    <div class="project" data-gallery="3D_Mind">
+      <div class="project-header">
+        <div class="project-title">3D-Mind</div>
+        <div class="project-date">Nov 2025</div>
+      </div>
+      <div class="project-tag">nnUNet&nbsp;v2 <span class="stack-sep">·</span> vtk.js <span class="stack-sep">·</span> React <span class="stack-sep">·</span> Vite <span class="stack-sep">·</span> Node.js <span class="stack-sep">·</span> Gemini <span class="stack-sep">·</span> NiBabel <span class="stack-sep">·</span> SimpleITK</div>
+      <p class="project-summary">An MRI scan, in 3D, in a browser, with an AI radiologist on tap.</p>
+
+      <div class="project-prose">
+        <p>An MRI takes time to interpret. The traditional workflow involves heavy desktop software and limited collaboration. We turned MRI scans into interactive 3D brain visualizations that open from a secure link &mdash; no install, just a browser.</p>
+        <p>Under the hood: <strong>nnUNet&nbsp;v2</strong> for 3D brain-tumor segmentation, <strong>NiBabel</strong> + <strong>SimpleITK</strong> for NIfTI medical imaging I/O, <strong>vtk.js</strong> for in-browser volume rendering, and a <strong>Gemini</strong>-powered chatbot that answers patient-history queries and writes clinical summaries on demand. <strong>Top 100 of 20,000+ teams</strong> at MumbaiHacks 2025.</p>
+      </div>
+
+      <div class="project-links">
+        <a href="https://github.com/canboyedits/3D-Mind" target="_blank" rel="noopener">GitHub&nbsp;&rarr;</a>
+      </div>
+
+      <div class="gallery-strip">
+        <div class="gallery-thumb" data-gallery="3D_Mind" data-index="0"><span class="thumb-num">01</span><img loading="lazy" src="assets/3D_Mind/1.png" alt="3D-Mind screenshot 1" /></div>
+        <div class="gallery-thumb" data-gallery="3D_Mind" data-index="1"><span class="thumb-num">02</span><img loading="lazy" src="assets/3D_Mind/2.png" alt="3D-Mind screenshot 2" /></div>
+        <div class="gallery-thumb" data-gallery="3D_Mind" data-index="2"><span class="thumb-num">03</span><img loading="lazy" src="assets/3D_Mind/3.png" alt="3D-Mind screenshot 3" /></div>
+        <div class="gallery-thumb" data-gallery="3D_Mind" data-index="3"><span class="thumb-num">04</span><img loading="lazy" src="assets/3D_Mind/4.png" alt="3D-Mind screenshot 4" /></div>
+      </div>
+    </div>
+
+    <!-- LEOPARD DETECTION -->
+    <div class="project">
+      <div class="project-header">
+        <div class="project-title">Leopard Detection &amp; Alert System</div>
+        <div class="project-date">2025</div>
+      </div>
+      <div class="project-tag">YOLOv8 <span class="stack-sep">·</span> Ultralytics <span class="stack-sep">·</span> OpenCV <span class="stack-sep">·</span> FastAPI <span class="stack-sep">·</span> Telegram Bot API</div>
+      <p class="project-summary">Real-time leopard detection on a live camera feed, with instant Telegram alerts to forest-boundary residents.</p>
+
+      <div class="project-prose">
+        <p>Human&ndash;wildlife conflict is rising in regions near forests. Manual CCTV is slow and tired eyes miss things. I built a system that watches a video feed, detects leopards with a fine-tuned YOLOv8 model (confidence threshold 0.7), draws a bounding box on a web dashboard, and pushes a snapshot to a Telegram channel for villagers and forest officers &mdash; with cooldown logic so they aren&rsquo;t spammed.</p>
+        <p>Built for forest boundaries, villages, farms, and surveillance posts. Future work: multi-animal detection and IoT-alarm integration.</p>
+      </div>
+
+      <div class="gallery-strip">
+        <div class="gallery-thumb" data-gallery="Bibtya_io" data-index="0"><span class="thumb-num">01</span><img loading="lazy" src="assets/Biptya_io/1.png" alt="Biptya.io screenshot 1" /></div>
+        <div class="gallery-thumb" data-gallery="Bibtya_io" data-index="1"><span class="thumb-num">02</span><img loading="lazy" src="assets/Biptya_io/2.png" alt="Biptya.io screenshot 2" /></div>
+        <div class="gallery-thumb" data-gallery="Bibtya_io" data-index="2"><span class="thumb-num">03</span><img loading="lazy" src="assets/Biptya_io/3.png" alt="Biptya.io screenshot 3" /></div>
+        <div class="gallery-thumb" data-gallery="Bibtya_io" data-index="3"><span class="thumb-num">04</span><img loading="lazy" src="assets/Biptya_io/4.png" alt="Biptya.io screenshot 4" /></div>
+        <div class="gallery-thumb" data-gallery="Bibtya_io" data-index="4"><span class="thumb-num">05</span><img loading="lazy" src="assets/Biptya_io/5.jpg" alt="Biptya.io screenshot 5" /></div>
+      </div>
+      
+    </div>
+
+    <!-- FACIAL RECOGNITION -->
+    <div class="project">
+      <div class="project-header">
+        <div class="project-title">Facial Detection &amp; Recognition</div>
+        <div class="project-date">2024</div>
+      </div>
+      <div class="project-tag">dlib <span class="stack-sep">·</span> OpenCV <span class="stack-sep">·</span> YOLO <span class="stack-sep">·</span> Python</div>
+      <p class="project-summary">A face-detection-and-recognition pipeline combining classical (dlib, OpenCV) and modern (YOLO) approaches.</p>
+
+      <div class="project-prose">
+        <p>A from-scratch exploration of the face-detection &amp; recognition stack. Used <strong>dlib</strong> for landmark detection and 128-D embeddings, <strong>OpenCV</strong> for capture and pre-processing, and <strong>YOLO</strong> for fast bounding-box detection on full frames. Good place to learn where classical CV ends and modern detection begins.</p>
+      </div>
+
+      <div class="project-links">
+        <a href="https://github.com/canboyedits/Facial_recognition" target="_blank" rel="noopener">GitHub&nbsp;&rarr;</a>
+      </div>
+
+      <div class="gallery-strip">
+        <div class="gallery-thumb" data-gallery="Face_DR" data-index="0"><span class="thumb-num">01</span><img loading="lazy" src="assets/Face_DR/1.png" alt="Face_DR screenshot 1" /></div>
+        <div class="gallery-thumb" data-gallery="Face_DR" data-index="1"><span class="thumb-num">02</span><img loading="lazy" src="assets/Face_DR/2.png" alt="Face_DR screenshot 2" /></div>
+      </div>
+
+    </div>
+
+    <!-- PIMA -->
+    <div class="project">
+      <div class="project-header">
+        <div class="project-title">Diabetes Prediction (PIMA dataset)</div>
+        <div class="project-date">2025</div>
+      </div>
+      <div class="project-tag">scikit-learn <span class="stack-sep">·</span> Pandas <span class="stack-sep">·</span> NumPy <span class="stack-sep">·</span> Matplotlib <span class="stack-sep">·</span> Seaborn <span class="stack-sep">·</span> SciPy</div>
+      <p class="project-summary">Classical machine-learning pipeline on the PIMA Indians Diabetes dataset &mdash; 768 records, 8 features, one binary outcome.</p>
+
+      <div class="project-prose">
+        <p>Full data-science walk-through: EDA, statistical hypothesis testing, missing-value handling on disguised zeros (insulin, BMI, blood pressure), feature scaling, model comparison across logistic regression / random forest / gradient boosting / SVM, and threshold tuning around precision/recall trade-offs that actually matter for medical screening.</p>
+      </div>
+
+      <div class="project-links">
+        <a href="https://colab.research.google.com/drive/14SJ7T0IrEjAivOCME3q0IPOZoMfSKVDt?usp=sharing" target="_blank" rel="noopener">Colab Notebook&nbsp;&rarr;</a>
+      </div>
+
+      <div class="gallery-strip">
+        <div class="gallery-thumb" data-gallery="PIMA" data-index="0"><span class="thumb-num">01</span><img loading="lazy" src="assets/PIMA_Project.png" alt="PIMA project visualization" /></div>
+      </div>
+    </div>
+
+    <!-- AXION CANVAS -->
+    <div class="project" data-gallery="AXION_Canvas">
+      <div class="project-header">
+        <div class="project-title">AXION Canvas</div>
+        <div class="project-date">2024 &ndash; 2026</div>
+      </div>
+      <div class="project-tag">TypeScript <span class="stack-sep">·</span> WebGL <span class="stack-sep">·</span> Skia <span class="stack-sep">·</span> Custom Font Engine</div>
+      <p class="project-summary">A from-scratch 2D rendering engine, in the browser, for newspapers.</p>
+
+      <div class="project-prose">
+        <p>Most newsrooms use the same DTP software they used in 2005. AXION Canvas is the alternative: a programmatic canvas on Skia + WebGL with a custom font engine, where a newspaper page can be drawn, edited, and exported by either a designer or a machine. The hard parts: glyph rendering, kerning tables, color spaces, and the entire pipeline an editor has to handle.</p>
+      </div>
+
+      <div class="gallery-strip">
+        <div class="gallery-thumb" data-gallery="AXION_Canvas" data-index="0"><span class="thumb-num">01</span><img loading="lazy" src="assets/AXION_Canvas/1.png" alt="AXION Canvas screenshot 1" /></div>
+        <div class="gallery-thumb" data-gallery="AXION_Canvas" data-index="1"><span class="thumb-num">02</span><img loading="lazy" src="assets/AXION_Canvas/2.png" alt="AXION Canvas screenshot 2" /></div>
+        <div class="gallery-thumb" data-gallery="AXION_Canvas" data-index="2"><span class="thumb-num">03</span><img loading="lazy" src="assets/AXION_Canvas/3.png" alt="AXION Canvas screenshot 3" /></div>
+      </div>
+    </div>
+
+    <!-- ALS -->
+    <div class="project" data-gallery="ALS">
+      <div class="project-header">
+        <div class="project-title">Automatic Layout System (ALS)</div>
+        <div class="project-date">2024 &ndash; 2026</div>
+      </div>
+      <div class="project-tag">YOLOv8 <span class="stack-sep">·</span> CNNs <span class="stack-sep">·</span> GANs <span class="stack-sep">·</span> Python <span class="stack-sep">·</span> PyTorch</div>
+      <p class="project-summary">The ML side of the Sakal newspaper-automation work &mdash; detection plus generation.</p>
+
+      <div class="project-prose">
+        <p>Fine-tuned <strong>YOLOv8</strong> on a custom newspaper dataset to detect headlines, photos, captions, and ad blocks; built the labeling pipeline, augmentation strategy, and evaluation harness end to end. Prototyped <strong>CNN</strong> and <strong>GAN</strong> models for full-page layout generation conditioned on article length, image count, and template constraints. Built the data pipeline that feeds it all: parsers, OCR-style text extraction, dataset versioning.</p>
+      </div>
+
+      <div class="gallery-strip">
+        <div class="gallery-thumb" data-gallery="ALS" data-index="0"><span class="thumb-num">01</span><img loading="lazy" src="assets/ALS/1.png" alt="ALS screenshot 1" /></div>
+        <div class="gallery-thumb" data-gallery="ALS" data-index="1"><span class="thumb-num">02</span><img loading="lazy" src="assets/ALS/2.png" alt="ALS screenshot 2" /></div>
+        <div class="gallery-thumb" data-gallery="ALS" data-index="2"><span class="thumb-num">03</span><img loading="lazy" src="assets/ALS/3.png" alt="ALS screenshot 3" /></div>
+      </div>
+    </div>
+
+    <!-- UNIQUE CLINIC -->
+    <div class="project" data-gallery="Unique_Clinic">
+      <div class="project-header">
+        <div class="project-title">Unique Clinic</div>
+        <div class="project-date">2025</div>
+      </div>
+      <div class="project-tag">Flutter <span class="stack-sep">·</span> Dart <span class="stack-sep">·</span> SQLite <span class="stack-sep">·</span> Firebase <span class="stack-sep">·</span> Edge Detection <span class="stack-sep">·</span> perfect_freehand</div>
+      <p class="project-summary">A clinic-management app for urology &amp; nephrology, with handwritten consultation notes and intelligent document capture.</p>
+
+      <div class="project-prose">
+        <p>Production-grade Flutter app for a specialized practice. Dual-specialty data isolation, multi-layer auth (16-digit access code plus a per-specialty SHA-256-hashed PIN, stored in Keychain / Keystore), and a 5-page consultation form doctors can hand-write on with smooth, pressure-aware strokes. The CV side: real-time edge detection, perspective correction, interactive cropping, and WebP compression cutting file sizes by ~60%. Offline-first SQLite with hash-based incremental backup to Firebase Storage.</p>
+      </div>
+
+      <div class="gallery-strip" id="gallery-unique-clinic">
+        <!-- Generated by JS to keep HTML readable: 14 thumbs -->
+      </div>
+    </div>
+
+    <!-- METER TRACK -->
+    <div class="project" data-gallery="MeterTrack">
+      <div class="project-header">
+        <div class="project-title">MeterTrack</div>
+        <div class="project-date">2025</div>
+      </div>
+      <div class="project-tag">Flutter <span class="stack-sep">·</span> Express <span class="stack-sep">·</span> TypeScript <span class="stack-sep">·</span> Prisma <span class="stack-sep">·</span> MySQL <span class="stack-sep">·</span> JWT</div>
+      <p class="project-summary">A meter-reading app for utility-company field technicians, with role-based access and one-click PDF/Excel export.</p>
+
+      <div class="project-prose">
+        <p>Replaces paper-and-pen meter readings with a digital pipeline: KWH, KVARH, KVAH, and time-of-day tariff segments captured via a validated form, deduped per branch per day, synced to MySQL through Prisma. PDF/Excel export with one click. Quietly saves utility companies thousands of admin hours.</p>
+      </div>
+
+      <div class="gallery-strip" id="gallery-metertrack">
+        <!-- Generated by JS: 7 thumbs -->
+      </div>
+    </div>
+
+    <!-- E-COMMERCE -->
+    <div class="project" data-gallery="ecommerce_site">
+      <div class="project-header">
+        <div class="project-title">E-commerce platform</div>
+        <div class="project-date">Jan &ndash; Jul 2024</div>
+      </div>
+      <div class="project-tag">Next.js <span class="stack-sep">·</span> Prisma <span class="stack-sep">·</span> TypeScript <span class="stack-sep">·</span> MySQL <span class="stack-sep">·</span> AWS Lightsail <span class="stack-sep">·</span> NGINX</div>
+      <p class="project-summary">A scalable storefront with admin dashboard, microservices architecture, end-to-end deployment.</p>
+
+      <div class="project-prose">
+        <p>A freelance build before Sakal. End-to-end: storefront, admin dashboard, microservices, deployed on AWS Lightsail behind NGINX with a custom domain. The point of including this isn&rsquo;t the e-commerce &mdash; it&rsquo;s where I learned to ship.</p>
+      </div>
+
+      <div class="gallery-strip">
+        <div class="gallery-thumb" data-gallery="ecommerce_site" data-index="0"><span class="thumb-num">01</span><img loading="lazy" src="assets/ecommerce_site/1.png" alt="E-commerce screenshot 1" /></div>
+        <div class="gallery-thumb" data-gallery="ecommerce_site" data-index="1"><span class="thumb-num">02</span><img loading="lazy" src="assets/ecommerce_site/2.png" alt="E-commerce screenshot 2" /></div>
+        <div class="gallery-thumb" data-gallery="ecommerce_site" data-index="2"><span class="thumb-num">03</span><img loading="lazy" src="assets/ecommerce_site/3.png" alt="E-commerce screenshot 3" /></div>
+        <div class="gallery-thumb" data-gallery="ecommerce_site" data-index="3"><span class="thumb-num">04</span><img loading="lazy" src="assets/ecommerce_site/4.png" alt="E-commerce screenshot 4" /></div>
+      </div>
+    </div>
+
+    <!-- NOISE MONITOR -->
+    <div class="project">
+      <div class="project-header">
+        <div class="project-title">Classroom noise monitor</div>
+        <div class="project-date">Jan 2020</div>
+      </div>
+      <div class="project-tag">Embedded <span class="stack-sep">·</span> Sensor design</div>
+      <p class="project-summary">The project that won me my first hackathon trophy at age 14.</p>
+
+      <div class="project-prose">
+        <p>Persistent Smart School Hackathon, 2020. Problem: a device that indicates noise-pollution level in a classroom. Mine took home Runner-Up, Best Innovative Idea. The loop of <em>sense&nbsp;&rarr; threshold&nbsp;&rarr; respond</em> is essentially what I&rsquo;m still doing in software, just at a different scale.</p>
+      </div>
+
+      <div class="gallery-strip">
+        <div class="gallery-thumb" data-gallery="NoiseMonitor" data-index="0"><span class="thumb-num">01</span><img loading="lazy" src="assets/noise_monitor_project.jpeg" alt="Noise monitor project" /></div>
+      </div>
+    </div>
+
+  </article>
+
+  <!-- ================== V. TOOLBELT ================== -->
+  <article class="section reveal" id="toolbelt">
+    <span class="section-number">V &mdash; Toolbelt</span>
+    <h2 class="section-title">What I reach for</h2>
+
+    <div class="toolbelt">
+      <div class="toolbelt-row">
+        <div class="toolbelt-label">Daily</div>
+        <div class="toolbelt-items">
+          <span class="tool">Python</span><span class="tool">PyTorch</span><span class="tool">Hugging&nbsp;Face Transformers</span><span class="tool">TRL (SFT, GRPO, LoRA)</span><span class="tool">NumPy</span><span class="tool">Pandas</span><span class="tool">Jupyter</span><span class="tool">Git</span><span class="tool">Linux</span><span class="tool">Docker</span>
+        </div>
+      </div>
+      <div class="toolbelt-row">
+        <div class="toolbelt-label">Regularly</div>
+        <div class="toolbelt-items">
+          <span class="tool">scikit-learn</span><span class="tool">YOLOv8</span><span class="tool">OpenCV</span><span class="tool">dlib</span><span class="tool">FastAPI</span><span class="tool">SQL</span><span class="tool">MySQL</span><span class="tool">SQLite</span><span class="tool">Matplotlib</span><span class="tool">Seaborn</span><span class="tool">AWS</span><span class="tool">Gemini API</span>
+        </div>
+      </div>
+      <div class="toolbelt-row">
+        <div class="toolbelt-label">CV / Medical</div>
+        <div class="toolbelt-items">
+          <span class="tool">nnUNet&nbsp;v2</span><span class="tool">NiBabel</span><span class="tool">SimpleITK</span><span class="tool">NIfTI</span><span class="tool">3D Volume Rendering</span><span class="tool">Edge Detection</span><span class="tool">OCR pipelines</span>
+        </div>
+      </div>
+      <div class="toolbelt-row">
+        <div class="toolbelt-label">Frontend / Mobile</div>
+        <div class="toolbelt-items">
+          <span class="tool">TypeScript</span><span class="tool">React</span><span class="tool">Next.js</span><span class="tool">Vite</span><span class="tool">Flutter</span><span class="tool">Dart</span><span class="tool">Tailwind&nbsp;CSS</span><span class="tool">vtk.js</span><span class="tool">WebGL</span><span class="tool">Skia</span>
+        </div>
+      </div>
+      <div class="toolbelt-row">
+        <div class="toolbelt-label">Lower in stack</div>
+        <div class="toolbelt-items">
+          <span class="tool">C++</span><span class="tool">C</span><span class="tool">Bash</span><span class="tool">NGINX</span><span class="tool">Prisma</span><span class="tool">Express</span><span class="tool">Node.js</span><span class="tool">REST APIs</span><span class="tool">SAP integration</span>
+        </div>
+      </div>
+      <div class="toolbelt-row">
+        <div class="toolbelt-label">Origin tools</div>
+        <div class="toolbelt-items">
+          <span class="tool">Arduino</span><span class="tool">Raspberry Pi</span><span class="tool">Embedded systems</span><span class="tool">IoT</span><span class="tool">Networking</span><span class="tool">Ethical hacking</span>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- ================== VI. HONORS ================== -->
+  <article class="section reveal" id="honors">
+    <span class="section-number">VI &mdash; Honors &amp; certificates</span>
+    <h2 class="section-title">Things on the wall</h2>
+
+    <div class="honor">
+      <div class="honor-meta">2026 · OpenEnv Hackathon · Bangalore</div>
+      <span class="honor-title">Top 100 of 52,000+ developers</span>
+      <p class="honor-prose">Meta &times; PyTorch &times; Hugging Face Grand Finale, Scaler School of Technology. Shipped DesignGym 2.0.</p>
+    </div>
+
+    <div class="honor">
+      <div class="honor-meta">2025 · MumbaiHacks · Mumbai</div>
+      <span class="honor-title">Top 100 of 20,000+ teams</span>
+      <p class="honor-prose">India&rsquo;s largest Agentic AI hackathon, organized by HCLTech and Tech Entrepreneurs Association of Mumbai. Shipped 3D-Mind.</p>
+    </div>
+
+    <div class="honor">
+      <div class="honor-meta">2020 · Persistent Foundation · Pune</div>
+      <span class="honor-title">Runner-Up, Best Innovative Idea</span>
+      <p class="honor-prose">Persistent Smart School Hackathon Grand Finale. Embedded classroom noise sensor. Age 14.</p>
+    </div>
+
+    <div class="honor">
+      <div class="honor-meta">2021 · Hacker School</div>
+      <span class="honor-title">Certificate of Excellence in Ethical Hacking</span>
+      <p class="honor-prose">Eight weeks. Learned how systems break.</p>
+    </div>
+
+    <div class="honor">
+      <div class="honor-meta">2018 &amp; 2019 · IndiaFIRST Robotics</div>
+      <span class="honor-title">RoboCHAMP Pro Engineer (A+) &amp; Jr. Champion Engineer (A+)</span>
+    </div>
+
+    <div class="honor">
+      <div class="honor-meta">2018 &amp; 2019 · Government of Maharashtra</div>
+      <span class="honor-title">Drawing &mdash; Elementary (B), Intermediate (A)</span>
+      <p class="honor-prose">Composition turned out to matter for an RL environment about layouts.</p>
+    </div>
+
+    <div class="cert-gallery" id="cert-gallery">
+      <div class="cert-thumb" data-caption="OpenEnv Hackathon · Top 100 / 52,000+ · 2026"><img loading="lazy" src="assets/MetaHackathon_cert.jpeg" alt="OpenEnv Hackathon certificate" /><div class="cert-caption">OpenEnv · Top 100</div></div>
+      <div class="cert-thumb" data-caption="MumbaiHacks 2025 · Participation"><img loading="lazy" src="assets/MH_cert.jpg" alt="MumbaiHacks 2025" /><div class="cert-caption">MumbaiHacks 2025</div></div>
+      <div class="cert-thumb" data-caption="MumbaiHacks 2025 · Top 100 of 20,000+ teams"><img loading="lazy" src="assets/MH_top100.jpg" alt="MumbaiHacks Top 100" /><div class="cert-caption">MumbaiHacks · Top 100</div></div>
+      <div class="cert-thumb" data-caption="Persistent Smart School Hackathon · Runner-Up · 2020"><img loading="lazy" src="assets/SSH_cert.jpeg" alt="Smart School Hackathon" /><div class="cert-caption">Persistent SSH · Runner-Up</div></div>
+      <div class="cert-thumb" data-caption="Hacker School · Ethical Hacking · 2021"><img loading="lazy" src="assets/HackerSchool_cert.jpg" alt="Hacker School" /><div class="cert-caption">Hacker School · CoE</div></div>
+      <div class="cert-thumb" data-caption="IndiaFIRST Robotics · Pro Engineer A+ · 2018"><img loading="lazy" src="assets/IFR_cert1.jpeg" alt="IndiaFIRST Robotics 2018" /><div class="cert-caption">IFR · 2018</div></div>
+      <div class="cert-thumb" data-caption="IndiaFIRST Robotics · Jr. Champion Engineer A+ · 2019"><img loading="lazy" src="assets/IFR_cert2.jpeg" alt="IndiaFIRST Robotics 2019" /><div class="cert-caption">IFR · 2019</div></div>
+      <div class="cert-thumb" data-caption="Government of Maharashtra · Drawing Elementary B · 2018"><img loading="lazy" src="assets/DE_1.jpeg" alt="Drawing Elementary" /><div class="cert-caption">Drawing · Elementary</div></div>
+      <div class="cert-thumb" data-caption="Government of Maharashtra · Drawing Intermediate A · 2019"><img loading="lazy" src="assets/DE_2.jpeg" alt="Drawing Intermediate" /><div class="cert-caption">Drawing · Intermediate</div></div>
+      <div class="cert-thumb" data-caption="Edutech / Goethe-Institut · Interactive Art Workshop · 2019"><img loading="lazy" src="assets/eduTech_cert.jpeg" alt="Edutech workshop" /><div class="cert-caption">Edutech · 2019</div></div>
+      <div class="cert-thumb" data-caption="Fergusson College · First Year B.Sc. CS"><img loading="lazy" src="assets/FY_marksheet.jpeg" alt="First Year marksheet" /><div class="cert-caption">FY · Marksheet</div></div>
+      <div class="cert-thumb" data-caption="Fergusson College · Second Year B.Sc. CS"><img loading="lazy" src="assets/SY_marksheet.jpeg" alt="Second Year marksheet" /><div class="cert-caption">SY · Marksheet</div></div>
+    </div>
+  </article>
+
+  <!-- ================== VII. READING + CURIOSITIES ================== -->
+  <article class="section reveal" id="reading">
+    <span class="section-number">VII &mdash; Reading &amp; curiosities</span>
+    <h2 class="section-title">What&rsquo;s on the desk</h2>
+
+    <ul class="reading-list">
+      <li><span class="reading-meta">ML</span>Sutton &amp; Barto, <em>Reinforcement Learning: An Introduction</em></li>
+      <li><span class="reading-meta">ML</span>The GRPO paper (DeepSeekMath); papers on Titans, RAG, vector databases, and Transformers fundamentals.</li>
+      <li><span class="reading-meta">Finance</span>Sheldon Natenberg, <em>Option Volatility &amp; Pricing</em></li>
+      <li><span class="reading-meta">Finance</span>John Murphy, <em>Technical Analysis of the Financial Markets</em></li>
+      <li><span class="reading-meta">Finance</span>Benjamin Graham, <em>The Intelligent Investor</em></li>
+      <li><span class="reading-meta">Design</span>Tufte, <em>The Visual Display of Quantitative Information</em></li>
+      <li><span class="reading-meta">Re-reading</span>Birkhoff (1933), <em>Aesthetic Measure</em> &mdash; the math behind &ldquo;good design&rdquo;</li>
+      <li><span class="reading-meta">Wrote</span><a class="link" href="https://huggingface.co/spaces/yashvyasop/DesignGym/blob/main/Blog.md" target="_blank" rel="noopener">DesignGym 2.0 &mdash; Teaching an LLM to Think Like a Designer</a></li>
+    </ul>
+
+    <div class="curiosities">
+      <p>Outside ML I&rsquo;m curious about:</p>
+      <span class="curiosity-tag">Neuroscience</span><span class="curiosity-tag">How brains work</span><span class="curiosity-tag">Psychology</span><span class="curiosity-tag">Cell biology</span><span class="curiosity-tag">Atoms &amp; physics</span><span class="curiosity-tag">Stock markets</span><span class="curiosity-tag">Self-help</span>
+    </div>
+  </article>
+
+  <!-- ================== VIII. CONTACT ================== -->
+  <article class="section reveal" id="contact">
+    <span class="section-number">VIII &mdash; Get in touch</span>
+    <h2 class="section-title">If anything here resonated</h2>
+
+    <div class="prose">
+      <p>The fastest way is email. I&rsquo;m always up for a conversation about ML, RL, computer vision, design, or how to make useful things people can depend on.</p>
+    </div>
+
+    <div class="contact">
+      <div>
+        <span class="contact-label">Email</span>
+        <a href="mailto:yashvyas.ofcl@gmail.com">yashvyas.ofcl@gmail.com</a>
+      </div>
+      <div>
+        <span class="contact-label">GitHub</span>
+        <a href="https://github.com/canboyedits" target="_blank" rel="noopener">canboyedits</a>
+      </div>
+      <div>
+        <span class="contact-label">LinkedIn</span>
+        <a href="https://www.linkedin.com/in/yashvyas2005/" target="_blank" rel="noopener">yashvyas2005</a>
+      </div>
+      <div>
+        <span class="contact-label">Hugging Face</span>
+        <a href="https://huggingface.co/yashvyasop" target="_blank" rel="noopener">yashvyasop</a>
+      </div>
+      <div>
+        <span class="contact-label">CV</span>
+        <a href="assets/YashCV.pdf" download>Download (PDF)</a>
+      </div>
+      <div>
+        <span class="contact-label">Location</span>
+        <span class="muted">Pune, Maharashtra, India</span>
+      </div>
+    </div>
+
+    <div class="colophon">
+      Set in <a class="link" href="https://fonts.google.com/specimen/Crimson+Pro" target="_blank" rel="noopener">Crimson Pro</a> &amp; <a class="link" href="https://www.jetbrains.com/lp/mono/" target="_blank" rel="noopener">JetBrains Mono</a>. Built by hand in HTML, CSS, and a small amount of JavaScript. Hosted on GitHub Pages.
+      <div class="signature">&mdash; Yash</div>
+    </div>
+  </article>
+
+</main>
+
+<!-- ================== LIGHTBOX ================== -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lightbox-close" id="lightbox-close" aria-label="Close">&times; close</button>
+  <div class="lightbox-img-wrap">
+    <span class="lightbox-counter" id="lightbox-counter"></span>
+    <img src="" alt="" id="lightbox-img" />
+    <span class="lightbox-caption" id="lightbox-caption"></span>
+  </div>
+  <button class="lightbox-nav prev" id="lightbox-prev" aria-label="Previous image">&larr;</button>
+  <button class="lightbox-nav next" id="lightbox-next" aria-label="Next image">&rarr;</button>
+</div>
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="script.js"></script>
+
 </body>
 </html>
