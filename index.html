@@ -22,6 +22,10 @@
 
 <!-- Reading progress -->
 <div class="progress-bar" id="progress-bar"></div>
+<aside class="read-meter" aria-label="Reading progress">
+  <span class="read-meter-label" id="read-meter-label">Top</span>
+  <span class="read-meter-percent" id="read-meter-percent">0%</span>
+</aside>
 
 <main class="page">
 
@@ -142,6 +146,22 @@
     <span class="section-number">IV &mdash; Projects</span>
     <h2 class="section-title">Things I&rsquo;ve built</h2>
 
+    <nav class="project-jump" aria-label="Project domains">
+      <a href="#projects-ml" data-project-target="projects-ml">ML / AI <span>6</span></a>
+      <a href="#projects-apps" data-project-target="projects-apps">Apps &amp; Web <span>3</span></a>
+      <a href="#projects-rendering" data-project-target="projects-rendering">Rendering <span>1</span></a>
+      <a href="#projects-iot" data-project-target="projects-iot">IoT <span>3</span></a>
+    </nav>
+
+    <section class="project-domain project-domain-fixed" id="projects-ml" data-domain-title="Projects · ML / AI">
+      <header class="domain-header">
+        <div>
+          <span class="domain-kicker">Focus area</span>
+          <h3>ML / AI</h3>
+        </div>
+        <span class="domain-count">6 projects</span>
+      </header>
+
     <!-- DESIGN GYM -->
     <div class="project" data-gallery="DesignGym">
       <div class="project-header">
@@ -175,6 +195,26 @@
         <div class="gallery-thumb" data-gallery="DesignGym" data-index="0"><span class="thumb-num">01</span><img loading="lazy" src="assets/DesignGym/1.png" alt="DesignGym screenshot 1" /></div>
         <div class="gallery-thumb" data-gallery="DesignGym" data-index="1"><span class="thumb-num">02</span><img loading="lazy" src="assets/DesignGym/2.png" alt="DesignGym screenshot 2" /></div>
         <div class="gallery-thumb" data-gallery="DesignGym" data-index="2"><span class="thumb-num">03</span><img loading="lazy" src="assets/DesignGym/3.png" alt="DesignGym screenshot 3" /></div>
+      </div>
+    </div>
+
+    <!-- ALS -->
+    <div class="project" data-gallery="ALS">
+      <div class="project-header">
+        <div class="project-title">Automatic Layout System (ALS)</div>
+        <div class="project-date">2024 &ndash; 2026</div>
+      </div>
+      <div class="project-tag">YOLOv8 <span class="stack-sep">·</span> CNNs <span class="stack-sep">·</span> GANs <span class="stack-sep">·</span> Python <span class="stack-sep">·</span> PyTorch</div>
+      <p class="project-summary">The ML side of the Sakal newspaper-automation work &mdash; detection plus generation.</p>
+
+      <div class="project-prose">
+        <p>Fine-tuned <strong>YOLOv8</strong> on a custom newspaper dataset to detect headlines, photos, captions, and ad blocks; built the labeling pipeline, augmentation strategy, and evaluation harness end to end. Prototyped <strong>CNN</strong> and <strong>GAN</strong> models for full-page layout generation conditioned on article length, image count, and template constraints. Built the data pipeline that feeds it all: parsers, OCR-style text extraction, dataset versioning.</p>
+      </div>
+
+      <div class="gallery-strip">
+        <div class="gallery-thumb" data-gallery="ALS" data-index="0"><span class="thumb-num">01</span><img loading="lazy" src="assets/ALS/1.png" alt="ALS screenshot 1" /></div>
+        <div class="gallery-thumb" data-gallery="ALS" data-index="1"><span class="thumb-num">02</span><img loading="lazy" src="assets/ALS/2.png" alt="ALS screenshot 2" /></div>
+        <div class="gallery-thumb" data-gallery="ALS" data-index="2"><span class="thumb-num">03</span><img loading="lazy" src="assets/ALS/3.png" alt="ALS screenshot 3" /></div>
       </div>
     </div>
 
@@ -274,45 +314,16 @@
       </div>
     </div>
 
-    <!-- AXION CANVAS -->
-    <div class="project" data-gallery="AXION_Canvas">
-      <div class="project-header">
-        <div class="project-title">AXION Canvas</div>
-        <div class="project-date">2024 &ndash; 2026</div>
-      </div>
-      <div class="project-tag">TypeScript <span class="stack-sep">·</span> WebGL <span class="stack-sep">·</span> Skia <span class="stack-sep">·</span> Custom Font Engine</div>
-      <p class="project-summary">A from-scratch 2D rendering engine, in the browser, for newspapers.</p>
+    </section>
 
-      <div class="project-prose">
-        <p>Most newsrooms use the same DTP software they used in 2005. AXION Canvas is the alternative: a programmatic canvas on Skia + WebGL with a custom font engine, where a newspaper page can be drawn, edited, and exported by either a designer or a machine. The hard parts: glyph rendering, kerning tables, color spaces, and the entire pipeline an editor has to handle.</p>
-      </div>
-
-      <div class="gallery-strip">
-        <div class="gallery-thumb" data-gallery="AXION_Canvas" data-index="0"><span class="thumb-num">01</span><img loading="lazy" src="assets/AXION_Canvas/1.png" alt="AXION Canvas screenshot 1" /></div>
-        <div class="gallery-thumb" data-gallery="AXION_Canvas" data-index="1"><span class="thumb-num">02</span><img loading="lazy" src="assets/AXION_Canvas/2.png" alt="AXION Canvas screenshot 2" /></div>
-        <div class="gallery-thumb" data-gallery="AXION_Canvas" data-index="2"><span class="thumb-num">03</span><img loading="lazy" src="assets/AXION_Canvas/3.png" alt="AXION Canvas screenshot 3" /></div>
-      </div>
-    </div>
-
-    <!-- ALS -->
-    <div class="project" data-gallery="ALS">
-      <div class="project-header">
-        <div class="project-title">Automatic Layout System (ALS)</div>
-        <div class="project-date">2024 &ndash; 2026</div>
-      </div>
-      <div class="project-tag">YOLOv8 <span class="stack-sep">·</span> CNNs <span class="stack-sep">·</span> GANs <span class="stack-sep">·</span> Python <span class="stack-sep">·</span> PyTorch</div>
-      <p class="project-summary">The ML side of the Sakal newspaper-automation work &mdash; detection plus generation.</p>
-
-      <div class="project-prose">
-        <p>Fine-tuned <strong>YOLOv8</strong> on a custom newspaper dataset to detect headlines, photos, captions, and ad blocks; built the labeling pipeline, augmentation strategy, and evaluation harness end to end. Prototyped <strong>CNN</strong> and <strong>GAN</strong> models for full-page layout generation conditioned on article length, image count, and template constraints. Built the data pipeline that feeds it all: parsers, OCR-style text extraction, dataset versioning.</p>
-      </div>
-
-      <div class="gallery-strip">
-        <div class="gallery-thumb" data-gallery="ALS" data-index="0"><span class="thumb-num">01</span><img loading="lazy" src="assets/ALS/1.png" alt="ALS screenshot 1" /></div>
-        <div class="gallery-thumb" data-gallery="ALS" data-index="1"><span class="thumb-num">02</span><img loading="lazy" src="assets/ALS/2.png" alt="ALS screenshot 2" /></div>
-        <div class="gallery-thumb" data-gallery="ALS" data-index="2"><span class="thumb-num">03</span><img loading="lazy" src="assets/ALS/3.png" alt="ALS screenshot 3" /></div>
-      </div>
-    </div>
+    <details class="project-domain" id="projects-apps" data-domain-title="Projects · Apps &amp; Web">
+      <summary class="domain-header">
+        <div>
+          <span class="domain-kicker">Selectable domain</span>
+          <h3>Mobile Apps &amp; Web Development</h3>
+        </div>
+        <span class="domain-count">3 projects</span>
+      </summary>
 
     <!-- UNIQUE CLINIC -->
     <div class="project" data-gallery="Unique_Clinic">
@@ -371,6 +382,48 @@
       </div>
     </div>
 
+    </details>
+
+    <details class="project-domain" id="projects-rendering" data-domain-title="Projects · Rendering">
+      <summary class="domain-header">
+        <div>
+          <span class="domain-kicker">Selectable domain</span>
+          <h3>Rendering &amp; Canvas Systems</h3>
+        </div>
+        <span class="domain-count">1 project</span>
+      </summary>
+
+    <!-- AXION CANVAS -->
+    <div class="project" data-gallery="AXION_Canvas">
+      <div class="project-header">
+        <div class="project-title">AXION Canvas</div>
+        <div class="project-date">2024 &ndash; 2026</div>
+      </div>
+      <div class="project-tag">TypeScript <span class="stack-sep">·</span> WebGL <span class="stack-sep">·</span> Skia <span class="stack-sep">·</span> Custom Font Engine</div>
+      <p class="project-summary">A from-scratch 2D rendering engine, in the browser, for newspapers.</p>
+
+      <div class="project-prose">
+        <p>Most newsrooms use the same DTP software they used in 2005. AXION Canvas is the alternative: a programmatic canvas on Skia + WebGL with a custom font engine, where a newspaper page can be drawn, edited, and exported by either a designer or a machine. The hard parts: glyph rendering, kerning tables, color spaces, and the entire pipeline an editor has to handle.</p>
+      </div>
+
+      <div class="gallery-strip">
+        <div class="gallery-thumb" data-gallery="AXION_Canvas" data-index="0"><span class="thumb-num">01</span><img loading="lazy" src="assets/AXION_Canvas/1.png" alt="AXION Canvas screenshot 1" /></div>
+        <div class="gallery-thumb" data-gallery="AXION_Canvas" data-index="1"><span class="thumb-num">02</span><img loading="lazy" src="assets/AXION_Canvas/2.png" alt="AXION Canvas screenshot 2" /></div>
+        <div class="gallery-thumb" data-gallery="AXION_Canvas" data-index="2"><span class="thumb-num">03</span><img loading="lazy" src="assets/AXION_Canvas/3.png" alt="AXION Canvas screenshot 3" /></div>
+      </div>
+    </div>
+
+    </details>
+
+    <details class="project-domain" id="projects-iot" data-domain-title="Projects · IoT">
+      <summary class="domain-header">
+        <div>
+          <span class="domain-kicker">Selectable domain</span>
+          <h3>IoT &amp; Embedded Systems</h3>
+        </div>
+        <span class="domain-count">3 projects</span>
+      </summary>
+
     <!-- NOISE MONITOR -->
     <div class="project">
       <div class="project-header">
@@ -388,6 +441,45 @@
         <div class="gallery-thumb" data-gallery="NoiseMonitor" data-index="0"><span class="thumb-num">01</span><img loading="lazy" src="assets/noise_monitor_project.jpeg" alt="Noise monitor project" /></div>
       </div>
     </div>
+
+    <!-- PLANT WATER DISPENSER -->
+    <div class="project">
+      <div class="project-header">
+        <div class="project-title">Automatic Plant Water Dispenser</div>
+        <div class="project-date">2021</div>
+      </div>
+      <div class="project-tag">ESP32 <span class="stack-sep">·</span> Blynk <span class="stack-sep">·</span> Sunlight sensor <span class="stack-sep">·</span> Human-temperature sensor <span class="stack-sep">·</span> Relay control</div>
+      <p class="project-summary">A small IoT watering system that watched the plant&rsquo;s environment and triggered water delivery automatically.</p>
+
+      <div class="project-prose">
+        <p>Built around an ESP32 with Blynk for phone-side monitoring and control. The system used sunlight and human-temperature sensor readings to understand the plant&rsquo;s conditions, then drove a relay/pump path for watering when the thresholds made sense. It was a practical 2021 build: read the environment, make a simple decision, act on hardware, and expose the state remotely.</p>
+      </div>
+
+      <div class="gallery-strip">
+        <div class="gallery-thumb" data-gallery="PlantWaterDispenser" data-index="0"><span class="thumb-num">01</span><img loading="lazy" src="assets/IoT/water_Dispenser_IoT.jpeg" alt="Automatic plant water dispenser IoT build" /></div>
+      </div>
+    </div>
+
+    <!-- LOGIC CLOCK -->
+    <div class="project">
+      <div class="project-header">
+        <div class="project-title">JK Flip-Flop Digital Clock</div>
+        <div class="project-date">2021</div>
+      </div>
+      <div class="project-tag">JK flip-flop ICs <span class="stack-sep">·</span> Logic ICs <span class="stack-sep">·</span> Seven-segment displays <span class="stack-sep">·</span> Breadboard prototyping <span class="stack-sep">·</span> No microcontroller</div>
+      <p class="project-summary">A hardware digital clock made from sequential logic instead of a dedicated microcontroller.</p>
+
+      <div class="project-prose">
+        <p>Built as a pure electronics clock: JK flip-flop ICs and supporting logic stages form the counters, while resistor-wired seven-segment displays show the digits. The flip-flops divide and step the timing pulse, cascaded counter stages advance the display, and reset logic rolls each digit at the right boundary. The point was to build the clock from gates and memory elements directly, not from firmware.</p>
+      </div>
+
+      <div class="gallery-strip">
+        <div class="gallery-thumb" data-gallery="LogicClock" data-index="0"><span class="thumb-num">01</span><img loading="lazy" src="assets/IoT/clock1.jpeg" alt="JK flip-flop digital clock breadboard" /></div>
+        <div class="gallery-thumb" data-gallery="LogicClock" data-index="1"><span class="thumb-num">02</span><img loading="lazy" src="assets/IoT/clock2.jpeg" alt="JK flip-flop clock seven-segment display wiring" /></div>
+      </div>
+    </div>
+
+    </details>
 
   </article>
 

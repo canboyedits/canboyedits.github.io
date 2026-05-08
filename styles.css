@@ -62,6 +62,36 @@ body {
   transition: width 80ms linear;
 }
 
+.read-meter {
+  position: fixed;
+  right: 1rem;
+  top: 46vh;
+  z-index: 45;
+  display: grid;
+  gap: 0.15rem;
+  padding-left: 0.65rem;
+  border-left: 1px solid var(--rule);
+  color: var(--ink-muted);
+  font-family: var(--font-mono);
+  pointer-events: none;
+}
+
+.read-meter-label {
+  max-width: 8rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.read-meter-percent {
+  color: var(--pen);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+}
+
 /* ---------- Page envelope ---------- */
 .page {
   max-width: calc(var(--col-text) + var(--gap-side) + var(--col-sidenote));
@@ -392,6 +422,111 @@ sup.note-marker {
 }
 
 /* ---------- Project entry ---------- */
+.project-jump {
+  position: sticky;
+  top: 0.65rem;
+  z-index: 20;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: -0.2rem 0 1.5rem;
+  padding: 0.45rem 0;
+  background-color: rgba(252, 250, 245, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--rule-soft);
+}
+
+.project-jump a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 2rem;
+  padding: 0.22rem 0.55rem;
+  border: 1px solid var(--rule);
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  text-transform: uppercase;
+  background-color: rgba(246, 240, 225, 0.48);
+  transition: border-color 160ms ease, color 160ms ease, background-color 160ms ease;
+}
+
+.project-jump a:hover,
+.project-jump a.is-active {
+  border-color: var(--pen);
+  color: var(--pen);
+  background-color: rgba(232, 220, 196, 0.65);
+}
+
+.project-jump span {
+  color: var(--ink-faint);
+  font-size: 0.62rem;
+}
+
+.project-domain {
+  scroll-margin-top: 4.5rem;
+  margin: 1.5rem 0 2rem;
+  border-top: 1px solid var(--rule);
+}
+
+.domain-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.95rem 0;
+}
+
+summary.domain-header {
+  cursor: pointer;
+  list-style: none;
+}
+
+summary.domain-header::-webkit-details-marker { display: none; }
+
+summary.domain-header::after {
+  content: '+';
+  flex: 0 0 auto;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 1px solid var(--rule);
+  color: var(--pen);
+  display: grid;
+  place-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  line-height: 1;
+}
+
+.project-domain[open] > summary.domain-header::after { content: '-'; }
+
+.domain-header h3 {
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  line-height: 1.15;
+  margin: 0;
+}
+
+.domain-kicker,
+.domain-count {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.project-domain-fixed {
+  border-top-color: var(--pen);
+}
+
+.project-domain-fixed .domain-kicker {
+  color: var(--pen);
+}
+
 .project {
   margin: 2.5rem 0 2.5rem;
   padding-bottom: 2rem;
@@ -565,6 +700,60 @@ sup.note-marker {
 .toolbelt-items .tool:last-child::after { content: ""; }
 
 @media (max-width: 600px) {
+  .read-meter {
+    right: 0.75rem;
+    bottom: 0.75rem;
+    top: auto;
+    display: flex;
+    align-items: baseline;
+    gap: 0.45rem;
+    max-width: calc(100vw - 1.5rem);
+    padding: 0.35rem 0.55rem;
+    border: 1px solid rgba(216, 208, 194, 0.9);
+    background-color: rgba(252, 250, 245, 0.92);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 16px rgba(42, 38, 32, 0.08);
+  }
+
+  .read-meter-label {
+    max-width: 9rem;
+    font-size: 0.58rem;
+  }
+
+  .read-meter-percent { font-size: 0.7rem; }
+
+  .project-jump {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    margin-right: calc(-1 * var(--pad-page));
+    padding-right: var(--pad-page);
+    scrollbar-width: none;
+  }
+
+  .project-jump::-webkit-scrollbar { display: none; }
+
+  .project-jump a {
+    flex: 0 0 auto;
+    min-height: 2.15rem;
+  }
+
+  .project-domain {
+    scroll-margin-top: 4rem;
+    margin-top: 1.2rem;
+  }
+
+  .domain-header {
+    align-items: flex-start;
+  }
+
+  .domain-header h3 {
+    font-size: 1.06rem;
+  }
+
+  .domain-count {
+    display: none;
+  }
+
   .toolbelt-row { grid-template-columns: 1fr; gap: 0.3rem; padding: 1rem 0; }
 }
 
@@ -876,7 +1065,7 @@ sup.note-marker {
 /* ---------- Print ---------- */
 @media print {
   body { background: white; color: black; }
-  .lightbox, .now, .progress-bar { display: none; }
+  .lightbox, .now, .progress-bar, .read-meter, .project-jump { display: none; }
   .page { max-width: 100%; padding: 1cm; }
   a { color: black; text-decoration: underline; }
 }

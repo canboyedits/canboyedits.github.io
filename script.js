@@ -3,11 +3,12 @@
    What this does:
      1. Reading-progress bar (top of viewport, ink line)
      2. Title hand-drawn highlight on load
-     3. KaTeX render with graceful fallback
+     3. Reader position label and project-domain navigation
      4. Auto-generate Unique Clinic + MeterTrack galleries
-     5. Lightbox with arrow-key navigation through galleries
-     6. Image protection: block right-click and drag on images
-     7. Dateline auto-update
+     5. KaTeX render with graceful fallback
+     6. Lightbox with arrow-key and swipe navigation
+     7. Image protection: block right-click and drag on images
+     8. Dateline auto-update
    ========================================================= */
 
 (function () {
@@ -17,24 +18,68 @@
      1. Reading-progress bar
      ============================================================ */
   const progressBar = document.getElementById('progress-bar');
-  if (progressBar) {
-    let ticking = false;
-    function updateProgress() {
-      const h = document.documentElement;
-      const total = h.scrollHeight - h.clientHeight;
-      const scrolled = h.scrollTop || document.body.scrollTop;
-      const pct = total > 0 ? (scrolled / total) * 100 : 0;
-      progressBar.style.width = pct + '%';
-      ticking = false;
-    }
-    window.addEventListener('scroll', () => {
-      if (!ticking) {
-        window.requestAnimationFrame(updateProgress);
-        ticking = true;
-      }
-    }, { passive: true });
-    updateProgress();
+  const readMeterLabel = document.getElementById('read-meter-label');
+  const readMeterPercent = document.getElementById('read-meter-percent');
+  const readableSections = Array.from(document.querySelectorAll('.title-block, .section'));
+  const projectDomains = Array.from(document.querySelectorAll('.project-domain'));
+  const projectLinks = Array.from(document.querySelectorAll('[data-project-target]'));
+
+  function getSectionLabel(el) {
+    if (!el) return 'Top';
+    if (el.classList.contains('title-block')) return 'Intro';
+    const title = el.querySelector('.section-title');
+    return title ? title.textContent.trim() : 'Reading';
   }
+
+  function getActiveProjectDomain() {
+    const marker = window.innerHeight * 0.38;
+    return projectDomains.find((domain) => {
+      const rect = domain.getBoundingClientRect();
+      return rect.top <= marker && rect.bottom >= marker;
+    });
+  }
+
+  function setActiveProjectLink(activeDomain) {
+    projectLinks.forEach((link) => {
+      link.classList.toggle('is-active', Boolean(activeDomain && link.dataset.projectTarget === activeDomain.id));
+    });
+  }
+
+  function updateReadingProgress() {
+    const h = document.documentElement;
+    const total = h.scrollHeight - h.clientHeight;
+    const scrolled = h.scrollTop || document.body.scrollTop;
+    const pct = total > 0 ? Math.min(100, Math.max(0, (scrolled / total) * 100)) : 0;
+
+    if (progressBar) progressBar.style.width = pct + '%';
+    if (readMeterPercent) readMeterPercent.textContent = `${Math.round(pct)}%`;
+
+    const marker = window.innerHeight * 0.35;
+    let activeSection = readableSections[0];
+    readableSections.forEach((section) => {
+      if (section.getBoundingClientRect().top <= marker) activeSection = section;
+    });
+
+    const activeDomain = getActiveProjectDomain();
+    setActiveProjectLink(activeDomain);
+    if (readMeterLabel) {
+      readMeterLabel.textContent = activeDomain ? activeDomain.dataset.domainTitle || 'Projects' : getSectionLabel(activeSection);
+    }
+  }
+
+  let progressTicking = false;
+  function requestProgressUpdate() {
+    if (progressTicking) return;
+    window.requestAnimationFrame(() => {
+      updateReadingProgress();
+      progressTicking = false;
+    });
+    progressTicking = true;
+  }
+
+  window.addEventListener('scroll', requestProgressUpdate, { passive: true });
+  window.addEventListener('resize', requestProgressUpdate);
+  updateReadingProgress();
 
   /* ============================================================
      2. Title highlight on load
@@ -45,7 +90,30 @@
   });
 
   /* ============================================================
-     3. Auto-generate the big galleries
+     3. Project-domain navigation
+     ============================================================ */
+  function openProjectDomain(id) {
+    const target = document.getElementById(id);
+    if (!target) return;
+    if (target.tagName === 'DETAILS') target.open = true;
+    projectDomains.forEach((domain) => {
+      if (domain !== target && domain.tagName === 'DETAILS') domain.open = false;
+    });
+  }
+
+  projectLinks.forEach((link) => {
+    link.addEventListener('click', () => {
+      openProjectDomain(link.dataset.projectTarget);
+      requestProgressUpdate();
+    });
+  });
+
+  projectDomains.forEach((domain) => {
+    domain.addEventListener('toggle', requestProgressUpdate);
+  });
+
+  /* ============================================================
+     4. Auto-generate the big galleries
      Unique Clinic = 14 images, MeterTrack = 7 images.
      Avoid 21 nearly-identical lines of HTML.
      ============================================================ */
@@ -70,7 +138,7 @@
   generateThumbs('gallery-metertrack', 'MeterTrack', 7, 'png');
 
   /* ============================================================
-     4. KaTeX with graceful fallback
+     5. KaTeX with graceful fallback
      ============================================================ */
   function renderEquations(attempt = 0) {
     if (!window.katex) {
@@ -93,7 +161,7 @@
   renderEquations();
 
   /* ============================================================
-     5. Lightbox with gallery navigation
+     6. Lightbox with gallery navigation
      - cert-thumbs: single-image lightbox (no arrows)
      - gallery-thumbs: arrow nav within data-gallery group
      ============================================================ */
@@ -108,6 +176,9 @@
   let currentGallery = [];
   let currentIndex = 0;
   let currentMode = 'single'; // 'single' or 'gallery'
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let suppressLightboxClick = false;
 
   function getGalleryItems(galleryName) {
     return Array.from(document.querySelectorAll(`.gallery-thumb[data-gallery="${galleryName}"]`))
@@ -187,11 +258,38 @@
   if (btnPrev) btnPrev.addEventListener('click', (e) => { e.stopPropagation(); prevImage(); });
 
   // Click image (or backdrop) to close
-  if (lightboxImg) lightboxImg.addEventListener('click', closeLightbox);
+  if (lightboxImg) lightboxImg.addEventListener('click', (e) => {
+    if (suppressLightboxClick) {
+      e.preventDefault();
+      suppressLightboxClick = false;
+      return;
+    }
+    closeLightbox();
+  });
   if (lightbox) lightbox.addEventListener('click', (e) => {
     // close on backdrop click but not on the nav buttons
     if (e.target === lightbox) closeLightbox();
   });
+
+  if (lightboxImg) {
+    lightboxImg.addEventListener('touchstart', (e) => {
+      if (!e.changedTouches.length) return;
+      touchStartX = e.changedTouches[0].clientX;
+      touchStartY = e.changedTouches[0].clientY;
+    }, { passive: true });
+
+    lightboxImg.addEventListener('touchend', (e) => {
+      if (currentMode !== 'gallery' || !e.changedTouches.length) return;
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      const dy = e.changedTouches[0].clientY - touchStartY;
+      if (Math.abs(dx) > 45 && Math.abs(dy) < 70) {
+        suppressLightboxClick = true;
+        window.setTimeout(() => { suppressLightboxClick = false; }, 500);
+        if (dx < 0) nextImage();
+        else prevImage();
+      }
+    }, { passive: true });
+  }
 
   // Keyboard
   document.addEventListener('keydown', (e) => {
@@ -204,7 +302,7 @@
   });
 
   /* ============================================================
-     6. Image protection (casual)
+     7. Image protection (casual)
      Blocks right-click context menu and dragstart on images shown
      on the page. Combined with CSS user-select / user-drag rules.
      Note: This stops casual users. Anyone with DevTools or who
@@ -223,7 +321,7 @@
   document.addEventListener('dragstart', blockImgEvents);
 
   /* ============================================================
-     7. Bonus: dateline auto-update
+     8. Bonus: dateline auto-update
      ============================================================ */
   const dateEl = document.getElementById('last-updated');
   if (dateEl) {
