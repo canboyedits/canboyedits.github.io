@@ -1,70 +1,20 @@
 /* =========================================================
    The Notebook — script.js (v2.1)
    What this does:
-     1. Reading-progress rail
-     2. Title hand-drawn highlight on load
-     3. Project-domain navigation
-     4. Auto-generate Unique Clinic + MeterTrack galleries
-     5. KaTeX render with graceful fallback
-     6. Lightbox with arrow-key and swipe navigation
-     7. Image protection: block right-click and drag on images
-     8. Dateline auto-update
+     1. Title hand-drawn highlight on load
+     2. Project-domain navigation
+     3. Auto-generate Unique Clinic + MeterTrack galleries
+     4. KaTeX render with graceful fallback
+     5. Lightbox with arrow-key and swipe navigation
+     6. Image protection: block right-click and drag on images
+     7. Dateline auto-update
    ========================================================= */
 
 (function () {
   'use strict';
 
   /* ============================================================
-     1. Reading-progress rail
-     ============================================================ */
-  const readMeter = document.getElementById('read-meter');
-  const readMeterFill = document.getElementById('read-meter-fill');
-  const projectDomains = Array.from(document.querySelectorAll('.project-domain'));
-  const projectLinks = Array.from(document.querySelectorAll('[data-project-target]'));
-
-  function getActiveProjectDomain() {
-    const marker = window.innerHeight * 0.38;
-    return projectDomains.find((domain) => {
-      const rect = domain.getBoundingClientRect();
-      return rect.top <= marker && rect.bottom >= marker;
-    });
-  }
-
-  function setActiveProjectLink(activeDomain) {
-    projectLinks.forEach((link) => {
-      link.classList.toggle('is-active', Boolean(activeDomain && link.dataset.projectTarget === activeDomain.id));
-    });
-  }
-
-  function updateReadingProgress() {
-    const h = document.documentElement;
-    const total = h.scrollHeight - h.clientHeight;
-    const scrolled = h.scrollTop || document.body.scrollTop;
-    const pct = total > 0 ? Math.min(100, Math.max(0, (scrolled / total) * 100)) : 0;
-
-    if (readMeterFill) readMeterFill.style.transform = `scaleX(${pct / 100})`;
-    if (readMeter) readMeter.setAttribute('aria-valuenow', String(Math.round(pct)));
-
-    const activeDomain = getActiveProjectDomain();
-    setActiveProjectLink(activeDomain);
-  }
-
-  let progressTicking = false;
-  function requestProgressUpdate() {
-    if (progressTicking) return;
-    window.requestAnimationFrame(() => {
-      updateReadingProgress();
-      progressTicking = false;
-    });
-    progressTicking = true;
-  }
-
-  window.addEventListener('scroll', requestProgressUpdate, { passive: true });
-  window.addEventListener('resize', requestProgressUpdate);
-  updateReadingProgress();
-
-  /* ============================================================
-     2. Title highlight on load
+     1. Title highlight on load
      ============================================================ */
   document.addEventListener('DOMContentLoaded', () => {
     const h1 = document.querySelector('.title-block h1');
@@ -72,8 +22,11 @@
   });
 
   /* ============================================================
-     3. Project-domain navigation
+     2. Project-domain navigation
      ============================================================ */
+  const projectDomains = Array.from(document.querySelectorAll('.project-domain'));
+  const projectLinks = Array.from(document.querySelectorAll('[data-project-target]'));
+
   function openProjectDomain(id) {
     const target = document.getElementById(id);
     if (!target) return;
@@ -86,16 +39,12 @@
   projectLinks.forEach((link) => {
     link.addEventListener('click', () => {
       openProjectDomain(link.dataset.projectTarget);
-      requestProgressUpdate();
+      projectLinks.forEach((item) => item.classList.toggle('is-active', item === link));
     });
   });
 
-  projectDomains.forEach((domain) => {
-    domain.addEventListener('toggle', requestProgressUpdate);
-  });
-
   /* ============================================================
-     4. Auto-generate the big galleries
+     3. Auto-generate the big galleries
      Unique Clinic = 14 images, MeterTrack = 7 images.
      Avoid 21 nearly-identical lines of HTML.
      ============================================================ */
@@ -120,7 +69,7 @@
   generateThumbs('gallery-metertrack', 'MeterTrack', 7, 'png');
 
   /* ============================================================
-     5. KaTeX with graceful fallback
+     4. KaTeX with graceful fallback
      ============================================================ */
   function renderEquations(attempt = 0) {
     if (!window.katex) {
@@ -143,7 +92,7 @@
   renderEquations();
 
   /* ============================================================
-     6. Lightbox with gallery navigation
+     5. Lightbox with gallery navigation
      - cert-thumbs: single-image lightbox (no arrows)
      - gallery-thumbs: arrow nav within data-gallery group
      ============================================================ */
@@ -284,7 +233,7 @@
   });
 
   /* ============================================================
-     7. Image protection (casual)
+     6. Image protection (casual)
      Blocks right-click context menu and dragstart on images shown
      on the page. Combined with CSS user-select / user-drag rules.
      Note: This stops casual users. Anyone with DevTools or who
@@ -303,7 +252,7 @@
   document.addEventListener('dragstart', blockImgEvents);
 
   /* ============================================================
-     8. Bonus: dateline auto-update
+     7. Bonus: dateline auto-update
      ============================================================ */
   const dateEl = document.getElementById('last-updated');
   if (dateEl) {
