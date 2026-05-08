@@ -1,7 +1,7 @@
 /* =========================================================
    The Notebook — Yash Vyas
    v2 — tighter prose, profile photo, project galleries,
-   reading progress, animated section markers, ink trail.
+   reading progress, ruled section markers, ink trail.
    ========================================================= */
 
 :root {
@@ -167,7 +167,7 @@ body {
 .hero-pitch p { margin-bottom: 0.6rem; }
 .hero-pitch p:last-child { margin-bottom: 0; }
 
-/* ---------- Section markers (Roman, animated) ---------- */
+/* ---------- Section markers (Roman, ruled) ---------- */
 .section {
   max-width: var(--col-text);
   margin: 4.5rem 0 0;
@@ -198,12 +198,9 @@ body {
   position: absolute;
   left: 0; bottom: 0;
   height: 1px;
-  width: 0;
+  width: 100%;
   background-color: var(--rule);
-  transition: width 600ms ease 100ms;
 }
-
-.section.is-visible .section-title::after { width: 100%; }
 
 /* ---------- Prose ---------- */
 p {
@@ -872,21 +869,7 @@ sup.note-marker {
   font-style: normal;
 }
 
-/* ---------- Scroll-triggered fade-in ---------- */
-.reveal {
-  opacity: 0;
-  transform: translateY(12px);
-  transition: opacity 700ms ease, transform 700ms ease;
-}
-
-.reveal.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .reveal { opacity: 1; transform: none; transition: none; }
-  .section-title::after { transition: none; width: 100%; }
   .ink-mark { background-size: 100% 0.4em !important; transition: none; }
 }
 

@@ -3,11 +3,11 @@
    What this does:
      1. Reading-progress bar (top of viewport, ink line)
      2. Title hand-drawn highlight on load
-     3. Section fade-ins (IntersectionObserver)
-     4. KaTeX render with graceful fallback
-     5. Auto-generate Unique Clinic + MeterTrack galleries
-     6. Lightbox with arrow-key navigation through galleries
-     7. Image protection: block right-click and drag on images
+     3. KaTeX render with graceful fallback
+     4. Auto-generate Unique Clinic + MeterTrack galleries
+     5. Lightbox with arrow-key navigation through galleries
+     6. Image protection: block right-click and drag on images
+     7. Dateline auto-update
    ========================================================= */
 
 (function () {
@@ -45,7 +45,7 @@
   });
 
   /* ============================================================
-     4. Auto-generate the big galleries
+     3. Auto-generate the big galleries
      Unique Clinic = 14 images, MeterTrack = 7 images.
      Avoid 21 nearly-identical lines of HTML.
      ============================================================ */
@@ -70,32 +70,7 @@
   generateThumbs('gallery-metertrack', 'MeterTrack', 7, 'png');
 
   /* ============================================================
-     5. Section reveal on scroll
-     ============================================================ */
-  const reveals = document.querySelectorAll('.reveal');
-  const sections = document.querySelectorAll('.section');
-
-  if ('IntersectionObserver' in window) {
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            io.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
-    );
-    reveals.forEach((el) => io.observe(el));
-    sections.forEach((el) => io.observe(el));
-  } else {
-    reveals.forEach((el) => el.classList.add('is-visible'));
-    sections.forEach((el) => el.classList.add('is-visible'));
-  }
-
-  /* ============================================================
-     6. KaTeX with graceful fallback
+     4. KaTeX with graceful fallback
      ============================================================ */
   function renderEquations(attempt = 0) {
     if (!window.katex) {
@@ -118,7 +93,7 @@
   renderEquations();
 
   /* ============================================================
-     7. Lightbox with gallery navigation
+     5. Lightbox with gallery navigation
      - cert-thumbs: single-image lightbox (no arrows)
      - gallery-thumbs: arrow nav within data-gallery group
      ============================================================ */
@@ -229,7 +204,7 @@
   });
 
   /* ============================================================
-     8. Image protection (casual)
+     6. Image protection (casual)
      Blocks right-click context menu and dragstart on images shown
      on the page. Combined with CSS user-select / user-drag rules.
      Note: This stops casual users. Anyone with DevTools or who
@@ -248,7 +223,7 @@
   document.addEventListener('dragstart', blockImgEvents);
 
   /* ============================================================
-     9. Bonus: dateline auto-update
+     7. Bonus: dateline auto-update
      ============================================================ */
   const dateEl = document.getElementById('last-updated');
   if (dateEl) {
