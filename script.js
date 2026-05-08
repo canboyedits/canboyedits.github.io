@@ -1,9 +1,9 @@
 /* =========================================================
    The Notebook — script.js (v2.1)
    What this does:
-     1. Reading-progress bar (top of viewport, ink line)
+     1. Reading-progress rail
      2. Title hand-drawn highlight on load
-     3. Reader position label and project-domain navigation
+     3. Project-domain navigation
      4. Auto-generate Unique Clinic + MeterTrack galleries
      5. KaTeX render with graceful fallback
      6. Lightbox with arrow-key and swipe navigation
@@ -15,21 +15,12 @@
   'use strict';
 
   /* ============================================================
-     1. Reading-progress bar
+     1. Reading-progress rail
      ============================================================ */
-  const progressBar = document.getElementById('progress-bar');
-  const readMeterLabel = document.getElementById('read-meter-label');
-  const readMeterPercent = document.getElementById('read-meter-percent');
-  const readableSections = Array.from(document.querySelectorAll('.title-block, .section'));
+  const readMeter = document.getElementById('read-meter');
+  const readMeterFill = document.getElementById('read-meter-fill');
   const projectDomains = Array.from(document.querySelectorAll('.project-domain'));
   const projectLinks = Array.from(document.querySelectorAll('[data-project-target]'));
-
-  function getSectionLabel(el) {
-    if (!el) return 'Top';
-    if (el.classList.contains('title-block')) return 'Intro';
-    const title = el.querySelector('.section-title');
-    return title ? title.textContent.trim() : 'Reading';
-  }
 
   function getActiveProjectDomain() {
     const marker = window.innerHeight * 0.38;
@@ -51,20 +42,11 @@
     const scrolled = h.scrollTop || document.body.scrollTop;
     const pct = total > 0 ? Math.min(100, Math.max(0, (scrolled / total) * 100)) : 0;
 
-    if (progressBar) progressBar.style.width = pct + '%';
-    if (readMeterPercent) readMeterPercent.textContent = `${Math.round(pct)}%`;
-
-    const marker = window.innerHeight * 0.35;
-    let activeSection = readableSections[0];
-    readableSections.forEach((section) => {
-      if (section.getBoundingClientRect().top <= marker) activeSection = section;
-    });
+    if (readMeterFill) readMeterFill.style.transform = `scaleX(${pct / 100})`;
+    if (readMeter) readMeter.setAttribute('aria-valuenow', String(Math.round(pct)));
 
     const activeDomain = getActiveProjectDomain();
     setActiveProjectLink(activeDomain);
-    if (readMeterLabel) {
-      readMeterLabel.textContent = activeDomain ? activeDomain.dataset.domainTitle || 'Projects' : getSectionLabel(activeSection);
-    }
   }
 
   let progressTicking = false;

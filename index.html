@@ -21,11 +21,9 @@
 <body>
 
 <!-- Reading progress -->
-<div class="progress-bar" id="progress-bar"></div>
-<aside class="read-meter" aria-label="Reading progress">
-  <span class="read-meter-label" id="read-meter-label">Top</span>
-  <span class="read-meter-percent" id="read-meter-percent">0%</span>
-</aside>
+<div class="read-meter" id="read-meter" role="progressbar" aria-label="Reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+  <span class="read-meter-fill" id="read-meter-fill"></span>
+</div>
 
 <main class="page">
 
